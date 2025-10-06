@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { HashRouter as Router } from 'react-router-dom';
 import Hero from "./components/Hero/Hero.jsx";
 import Header from "./components/Header/Header.jsx";
+import About from "./components/About/About.jsx";
 
 const AppContainer = styled.div`
   background-color: #1e1e1e; /* Match the background color of the hero section */
@@ -20,6 +21,7 @@ function App() {
           <Header />
           <MainContent>
             <Hero />
+              <About />
             </MainContent>
           </AppContainer>
         </Router>
