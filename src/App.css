@@ -45,7 +45,21 @@
 .App-link {
   color: #61dafb;
 }
-
+.text-primary {
+  color: #27beb3;
+}
+.text-secondary {
+  color:#1c7287
+}
+.bg-secondary {
+  background-color:#1c7287
+}
+.bg-primary {
+  background-color:#27beb3
+}
+.bg-black{
+  background-color:#1e1e1e
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
