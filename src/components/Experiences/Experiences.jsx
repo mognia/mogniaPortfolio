@@ -75,12 +75,10 @@ const Experience = () => {
                     <div className="relative z-50 xl:space-y-32 space-y-10">
                         {expCards.map((card) => (
                             <div key={card.title} className=" flex flex-col-reverse xl:flex-row xl:gap-20 gap-10 justify-between">
-                                <div className="xl:w-2/6">
 
-                                </div>
                                 <div className="xl:w-4/6">
                                     <div className="flex items-start">
-                                        <div className="absolute top-0 xl:left-[35.5vw] md:left-10 left-5 h-full flex justify-center">
+                                        <div className="absolute top-0  md:left-10 left-5 h-9/10 flex justify-center">
                                             <div className="timeline absolute z-30 h-[120%] -top-10 w-14 md:w-28 bg-black" />
                                             <div className={`${styles['gradient-line']} w-1 h-full`} />
                                         </div>
@@ -108,6 +106,9 @@ const Experience = () => {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="xl:w-2/6">
+
                                 </div>
                             </div>
                         ))}
