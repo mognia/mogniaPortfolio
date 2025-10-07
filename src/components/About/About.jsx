@@ -17,161 +17,86 @@ const About= () => {
   }, []);
 
   return (
-    <div className={styles['about-container']} id="about">
-      <section className={styles['about-intro']}>
-        <div className={styles['about-text']}>
-          <h2 className={styles['about-title']}>About Me</h2>
-          <p>
-            Hello! My name is <span className={styles["purple-text"]}>TJ Klint</span>,
-            well, technically it's <i>Timothy</i> (our little secret). Anyways,
-            I'm a passionate developer with a love for coding and technology.
-            Most recently, I'm working as a{" "}
-            <span className={styles["purple-text"]}>
-              Full-Stack Developer at{" "}
+      <div className={styles['about-container']} id="about">
+        <section className={styles['about-intro']}>
+          <div className={styles['about-text']}>
+            <h2 className={styles['about-title']}>About Me</h2>
+            <p>
+              Hey there! I’m <span className={"text-primary"}>Morten Ghafarnia</span>,
+              though if you see <i>Mohammad</i> somewhere, that’s me too (our little secret).
+              I’m a passionate <span className={"text-primary"}>Frontend Developer</span>{" "}
+              with over 6 years of experience building modern, fast, and intuitive web applications.
+              Most recently, I’ve been working as a{" "}
+              <span className={"text-primary"}>
+          Senior Frontend Engineer at{" "}
+                <a
+                    href="https://asax.ir/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "inherit", textDecoration: "underline" }}
+                >
+            Asa
+          </a>
+        </span>
+              , and previously collaborated with great teams at{" "}
+              <span className={"text-primary"}>Kilid</span>,{" "}
+              <span className={"text-primary"}>Esafar</span>, and{" "}
+              <span className={"text-primary"}>Quarterback</span>.
+            </p>
+            <p>
+              I specialize in frameworks like{" "}
+              <span className={"text-primary"}>Angular, React, and Next.js</span>,
+              and I’m currently expanding my stack with{" "}
+              <span className={"text-primary"}>Node.js</span> to strengthen my
+                <span className={"text-primary"}> full-stack </span> abilities. I love solving challenges around performance,
+              modularity, and clean architecture — crafting interfaces that not only
+              look good but also feel great to use. I’m a quick learner who thrives in
+              fast-paced environments, always excited to pick up new tools and
+              techniques to deliver high-quality products.
+            </p>
+            <p>
+              Outside of coding, When I’m not experimenting with{" "}
+                <span className={"text-primary"}>
+                    Coding
+                </span>{" "}
+                 or design
+              ideas, you can find me learning, travelling, or just chasing good coffee
+              and inspiration. If you’d like to connect or see my work, visit{" "}
               <a
-                href="https://botpress.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "underline" }}
+                  href="https://mognia.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "underline" }}
               >
-                Botpress
-              </a>
-            </span>
-            , and previously I completed internships at{" "}
-            <span className={styles["purple-text"]}>
+                mognia.dev
+              </a>{" "}
+              or reach out on{" "}
               <a
-                href="https://www.cse-cst.gc.ca/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "none" }}
+                  href="https://www.linkedin.com/in/morten-ghafarnia/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none" }}
               >
-                CSE (Communications Security Establishment)
-              </a>
-            </span>{" "}
-            and{" "}
-            <span className={styles["purple-text"]}>
+                LinkedIn
+              </a>{" "}
+              and{" "}
               <a
-                href="https://www.bell.ca/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "none" }}
+                  href="https://github.com/mognia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none" }}
               >
-                Bell
+                GitHub
               </a>
-            </span>
-            .
-          </p>
-          <p>
-            I'm a{" "}
-            <span className={styles["purple-text"]}>
-              <a
-                href="https://www.johnabbott.qc.ca/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "none" }}
-              >
-                graduate from John Abbott College
-              </a>
-            </span>
-            . I am expected to begin at{" "}
-            <span className={styles["purple-text"]}>
-              <a
-                href="https://www.concordia.ca/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "none" }}
-              >
-                Concordia University
-              </a>
-            </span>{" "}
-            in the fall of 2025, where I will be pursuing a bachelor's in
-            Computer Science.
-          </p>
-          <p>
-            My interests change greatly depending on my environment, but at the
-            moment, I am most interested by
-            <span className={styles["purple-text"]}>
-              {" "}
-              AI/ML, Ethical Hacking, DevOps and Fintech.
-            </span>
-          </p>
-          <p>
-            My skillset is quite wide-ranged, I don't focus all too heavy on the
-            frameworks/languages, I like to choose the best tools to get the
-            best product as fast as possible. I'm a quick learner, especially in
-            fast-paced environments where I'm able to hone skills on the fly to
-            improve and deliver on time.
-          </p>
-          <p>
-            My love for tech goes beyond class. I’m always eager to dive into
-            the world of hackathons and tech conferences. My passion has led me
-            to join my favorite conference,{" "}
-            <span className={styles["purple-text"]}>
-              <a
-                href="https://2025.cusec.net"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "underline" }}
-              >
-                CUSEC
-              </a>
-            </span>
-            , as the{" "}
-            <span className={styles["purple-text"]}>Director of Events in 2024</span>.
-            This past year, I'm thrilled to be stepping up as{" "}
-            <span className={styles["purple-text"]}>Co-Chair for 2025</span>.
-          </p>
-          <p>
-            Outside of tech, you'll typically find me playing hockey, golfing,
-            listening/discovering some live music, using the oxford comma, and
-            travelling!
-          </p>
-          <p>
-            You can also catch my blogs over on{" "}
-            <a
-              href="https://medium.com/@tjklint"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              Medium
-            </a>{" "}
-            or{" "}
-            <a
-              href="https://dev.to/tjklint"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              Dev.to
-            </a>
-            , and if you want to keep up to date with my work you should
-            definitely connect with me over on{" "}
-            <a
-              href="https://linkedin.com/in/timothy-klint"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              LinkedIn
-            </a>{" "}
-            and{" "}
-            <a
-              href="https://github.com/tjklint"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              GitHub
-            </a>
-            .
-          </p>
-        </div>
-        <div className={styles['about-photo']}>
-          <img src={photo} alt="TJ Klint" />
-        </div>
-      </section>
-    </div>
+              .
+            </p>
+          </div>
+          <div className={styles['about-photo']}>
+            <img src={photo} alt="Morten Ghafarnia" />
+          </div>
+        </section>
+      </div>
+
   );
 };
 

@@ -1,11 +1,12 @@
 // src/components/Resume.js
 import React from "react";
-
+import styles from'./Experiences.module.scss'
 export default function Resume() {
     return (
-        <div className="w-full flex flex-col items-center space-y-4">
+        <div className="w-full flex flex-col  items-center space-y-4 md:sticky md:top-0 md:py-5 md:z-10">
             {/* Inline PDF Preview */}
 
+            <div className={styles['resume-holder']}>
 
             {/* Always-Visible Download Button */}
             <button
@@ -14,6 +15,7 @@ export default function Resume() {
             >
                 Download Resume
             </button>
+            </div>
         </div>
     );
 }

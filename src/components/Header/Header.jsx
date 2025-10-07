@@ -17,7 +17,7 @@ const Header = () => {
     return (
         <header className={styles['header-container']}>
             <a href="#home" className={styles.logo} onClick={(e) => handleClick(e, 'home')}>
-                TJ KLINT
+                Mognia
             </a>
             <div className={styles.hamburger} onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? <FaTimes size={30} className={styles['close-icon']} /> : <FaBars size={30} />}
@@ -39,17 +39,19 @@ const Header = () => {
                     <FaFileAlt />
                     Resume
                 </a>
-                <a
+                <button
+                    onClick={()=> {
+                        setIsOpen(false)
+                        window.open("https://github.com/mognia", "_blank")
+                    }}
                     className={styles.button}
-                    href="https://github.com/tjklint/tjklint.github.io"
-                    target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => setIsOpen(false)}
+
                 >
-                    <FaStar />
-                    {`or\u00A0`}
-                    <FaCodeBranch />
-                </a>
+                    Check My
+                    {`\u00A0`}
+                    <FaGithub />
+                </button>
             </nav>
         </header>
     );

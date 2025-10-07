@@ -8,25 +8,19 @@ import spaceship from '../../assets/spaceship/webp/spaceship.webp'
 // Centralizing magic numbers and static data for easier maintenance.
 const TYPEWRITER_TEXTS = [
     "Software Developer",
-    "Ex-SDE Intern @ Bell",
-    "Co-Chair @ CUSEC",
-    "Ethical Hacker",
+    "Frontend Developer",
+    "Full-Sack Developer",
     "AI Enthusiast",
     "Coffee Drinker",
-    "Hackathon Fanatic"
 ];
 
 const TOP_LINES = [
-    "You’re finally awake. Let’s explore my work.",
-    "In a galaxy far, far away, I created this portfolio.",
-    "Winter is coming, but you’re safe here. Explore my work.",
+
     "Welcome to my corner of the web!",
     "Greetings! I'm thrilled to have you here.",
     "Hi! Thanks for dropping by.",
-    "It’s dangerous to go alone! Take this portfolio.",
     "Say hello to my little projects!",
     "Welcome to the dark side of my portfolio.",
-    "One portfolio to rule them all.",
 ];
 
 const TYPEWRITER_OPTIONS = {
@@ -221,7 +215,7 @@ const Hero = () => {
                     <h1 className="text-xl md:text-2xl">{topLine}</h1>
 
                     {/* GradientText equivalent with Tailwind and custom class */}
-                    <h2 className="gradient-text font-bold my-2" style={{fontSize: "clamp(2.5em, 8vw, 4em)"}}>I'm TJ Klint.</h2>
+                    <h2 className="gradient-text font-bold my-2" style={{fontSize: "clamp(2.5em, 8vw, 4em)"}}>I'm Mognia.</h2>
 
                     {/* TypewriterText equivalent with Tailwind */}
                     <div className="text-[#27beb3] whitespace-nowrap overflow-hidden" style={{fontSize: "clamp(1.2em, 4vw, 1.5em)", minHeight: "1.2em"}}>

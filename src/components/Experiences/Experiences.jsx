@@ -23,7 +23,7 @@ const Experience = () => {
             scrollTrigger: {
                 trigger: ".timeline",
                 start: "top center",
-                end: "70% center",
+                end: "90% center",
                 // Update the animation as the user scrolls
                 onUpdate: (self) => {
                     // Scale the timeline height as the user scrolls
@@ -81,11 +81,15 @@ const Experience = () => {
                                     <div className="flex items-start">
                                         <div className="absolute top-0  md:left-10 left-5 h-9/10 flex justify-center">
                                             <div className="timeline absolute z-30 h-[120%] -top-10 w-14 md:w-28 bg-black" />
-                                            <div className={`${styles['gradient-line']} bg-primary w-1 h-full`} />
+                                            <div className={`${styles['gradient-line']}  w-1 h-full`} />
                                         </div>
                                         <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                                            <div className="md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-black-50 bg-black-100">
-                                                <img src={card.logoPath} alt="logo" />
+                                            <div className="md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-black-50 bg-black-100 overflow-hidden">
+                                                <img
+                                                    src={card.logoPath}
+                                                    alt="logo"
+                                                    className="w-full h-full object-contain"
+                                                />
                                             </div>
                                             <div>
                                                 <h1 className="font-semibold text-3xl">{card.title}</h1>
@@ -111,10 +115,13 @@ const Experience = () => {
 
                             </div>
                         ))}
-                    </div>
-                        <div className="w-[700px]">
+                        <div className="md:hidden">
                            <Resume />
                         </div>
+                    </div>
+                    <div className="hidden md:flex w-[700px]">
+                        <Resume />
+                    </div>
                 </div>
             </div>
         </section>

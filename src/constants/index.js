@@ -1,38 +1,33 @@
 const expCards = [
     {
-        review: "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-        imgPath: "/images/exp1.png",
-        logoPath: "/images/logo1.png",
+        logoPath: "/src/assets/logos/asa.webp",
+        title: "Senior Frontend Developer",
+        date: "April 2023 - Oct 2025",
+        responsibilities: [
+            "Successfully delivered 5+ projects across various teams and departments.",
+            "Implemented a micro frontend architecture utilizing 4 independent applications with varying Angular versions.",
+            " Integrated PWA best practices, leading to a 10k increase in monthly mobile user engagement.",
+            "Optimized performance by restructuring the project and upgraded Angular to the latest version, bringing a boost of 25% faster page load and crafted a much better DevEx for team members.",
+        ],
+    },
+    {
+        logoPath: "/src/assets/logos/kilid.webp",
+        title: "Senior Frontend Developer",
+        date: "June 2021 - December 2022",
+        responsibilities: [
+            "Constructed an international real estate platform supporting multi language and multi currency, causing 10% more monthly users. ",
+            "Developed an Auto-Generative search filter based on previous applied filters, reducing user search requests to the server by 32%. ",
+            "Refactored the project and implemented a design system, leading to a more efficient development workflow.",
+        ],
+    },
+    {
+        logoPath: "/src/assets/logos/esafar.webp",
         title: "Frontend Developer",
-        date: "January 2023 - Present",
+        date: "Aug 2019 - Sept 2020",
         responsibilities: [
-            "Developed and maintained user-facing features for the Hostinger website.",
-            "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-            "Optimized web applications for maximum speed and scalability.",
-        ],
-    },
-    {
-        review: "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
-        imgPath: "/images/exp2.png",
-        logoPath: "/images/logo2.png",
-        title: "Full Stack Developer",
-        date: "June 2020 - December 2023",
-        responsibilities: [
-            "Led the development of Docker's web applications, focusing on scalability.",
-            "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-            "Contributed to open-source projects that were used with the Docker ecosystem.",
-        ],
-    },
-    {
-        review: "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-        imgPath: "/images/exp3.png",
-        logoPath: "/images/logo3.png",
-        title: "React Native Developer",
-        date: "March 2019 - May 2020",
-        responsibilities: [
-            "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-            "Improved app performance and user experience through code optimization and testing.",
-            "Coordinated with the product team to implement features based on feedback.",
+            "Collaborated to build a B2B panel to sell flight tickets at a reduced price, which caused sales to increase by 14%. ",
+            "Contributed to Transforming from AngularJS to the latest Angular version at the time.",
+            "Created a customer support panel, enabling a 30% rise in sales and improved customer satisfaction overall. ",
         ],
     },
 ];
