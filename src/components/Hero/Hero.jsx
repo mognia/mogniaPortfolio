@@ -1,266 +1,265 @@
-import React, { useEffect, useState, useRef } from 'react';
-import styled, { keyframes, css } from 'styled-components';
-import spaceship from '../../assets/spaceship/webp/spaceship.webp'; // Importing spaceship image
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+// Removed styled-components import
 
-// Main container for the hero section
-const HeroContainer = styled.section`
-  display: flex;
-  flex-direction: column; /* Stack items vertically by default */
-  min-height: 100vh; /* Full viewport height */
-  background-color: #1e1e1e; /* Dark background */
-  color: #fff; /* White text */
-  overflow: hidden; /* Prevent overflow */
-  font-family: 'RobotoMono', sans-serif; /* Use RobotoMono font */
-    
-    @media (min-width: 768px) {
-    flex-direction: row; /* On larger screens, layout side by side */
-  }
-`;
+// A placeholder for your spaceship image source
+import spaceship from '../../assets/spaceship/webp/spaceship.webp'
 
-// Left container for text and main title
-const LeftContainer = styled.div`
-  flex: 1; /* Take up equal space */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center text vertically */
-  padding: 40px; /* Padding around the text */
-  text-align: left; /* Left-align the text */
-  margin-top: -10%; /* Adjust to move text slightly up */
+// --- CONSTANTS ---
+// Centralizing magic numbers and static data for easier maintenance.
+const TYPEWRITER_TEXTS = [
+    "Software Developer",
+    "Ex-SDE Intern @ Bell",
+    "Co-Chair @ CUSEC",
+    "Ethical Hacker",
+    "AI Enthusiast",
+    "Coffee Drinker",
+    "Hackathon Fanatic"
+];
 
-  @media (max-width: 768px) {
-    padding-top: 0; /* Remove padding for smaller screens */
-    margin-top: 0; /* Remove negative margin for mobile */
-  }
+const TOP_LINES = [
+    "You’re finally awake. Let’s explore my work.",
+    "In a galaxy far, far away, I created this portfolio.",
+    "Winter is coming, but you’re safe here. Explore my work.",
+    "Welcome to my corner of the web!",
+    "Greetings! I'm thrilled to have you here.",
+    "Hi! Thanks for dropping by.",
+    "It’s dangerous to go alone! Take this portfolio.",
+    "Say hello to my little projects!",
+    "Welcome to the dark side of my portfolio.",
+    "One portfolio to rule them all.",
+];
 
-  @media (min-width: 768px) {
-    flex: 0 0 35%; /* Take up 35% of the space on larger screens */
-  }
-`;
+const TYPEWRITER_OPTIONS = {
+    typingSpeed: 100,
+    deletingSpeed: 50,
+    pauseDuration: 2000,
+};
 
-// Right container for the spaceship and animations
-const RightContainer = styled.div`
-  flex: 1; /* Take up equal space */
-  position: relative; /* Needed for absolute positioning of circles */
-  display: flex;
-  justify-content: center; /* Center the spaceship horizontally */
-  align-items: center; /* Center the spaceship vertically */
-  overflow: hidden; /* Prevent overflow of elements */
-  min-height: 50vh; /* Minimum height for smaller screens */
-
-  @media (min-width: 768px) {
-    flex: 0 0 65%; /* Take up 65% of the space on larger screens */
-  }
-`;
-
-// Floating animation for the spaceship (smooth up and down motion)
-const floatAnimation = keyframes`
-  0% {
-    transform: translateY(0); /* Start at original position */
-  }
-  50% {
-    transform: translateY(-10px); /* Move 10px up */
-  }
-  100% {
-    transform: translateY(0); /* Return to original position */
-  }
-`;
-
-// Styling for the spaceship image with floating animation
-const Spaceship = styled.img`
-  width: 80%; /* Set spaceship width to 80% of the container */
-  z-index: 1; /* Ensure it stays above any background elements */
-  animation: ${floatAnimation} 3s infinite; /* Apply floating animation */
-
-  @media (min-width: 768px) {
-    width: 50%; /* Make it smaller on larger screens */
-  }
-`;
-
-// Animation for shrinking and moving circles
-const shrinkAndMove = (left, top, containerWidth, containerHeight) => keyframes`
-  0% {
-    transform: translate(0, 0) scale(1); /* Start at full size and original position */
-    opacity: 1; /* Fully visible */
-  }
-  100% {
-    transform: translate(${containerWidth / 2 - left}px, ${containerHeight / 2 - top}px) scale(0); /* Move and shrink */
-    opacity: 0; /* Fade out */
-  }
-`;
-
-// Circle styling with animation based on position and size
-const Circle = styled.div`
-  position: absolute; /* Absolute positioning for floating circles */
-  background-color: #fff; /* White background for the circles */
-  border-radius: 50%; /* Make the div a circle */
-  opacity: 0.8; /* Slight transparency */
-
-  ${({ left, top, size, containerWidth, containerHeight }) => css`
-    width: ${size}px; /* Set width based on random size */
-    height: ${size}px; /* Set height to match width */
-    left: ${left}px; /* Set horizontal position */
-    top: ${top}px; /* Set vertical position */
-    animation: ${shrinkAndMove(left, top, containerWidth, containerHeight)} 2s linear forwards; /* Animate shrinking */
-  `}
-`;
-
-// Styling for the gradient text (title)
-const GradientText = styled.h2`
-  background: linear-gradient(80deg, #1c7287, #27beb3); /* Purple gradient */
-  -webkit-background-clip: text; /* Clip background to text */
-  -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
-  font-size: 4em; /* Large font size */
-  font-weight: bold; /* Bold text */
-  margin: 0.5em 0; /* Space around the text */
-`;
-
-// Styling for the typewriter effect text
-const TypewriterText = styled.div`
-  color: #27beb3; /* Light purple color */
-  font-size: 1.5em; /* Medium font size */
-  margin-top: 0.5em; /* Space above the text */
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflowing text */
-`;
+const CIRCLE_ANIMATION_CONFIG = {
+    generationInterval: 333,
+    circlesPerInterval: 7,
+    animationDuration: 2000, // This must match the CSS animation duration
+};
 
 
-// Main Hero component
-const Hero = () => {
-    const [circles, setCircles] = useState([]); // State to manage circles
-    const [topLine, setTopLine] = useState(''); // State for random headline
-    const [currentText, setCurrentText] = useState(''); // State for typewriter text
-    const rightContainerRef = useRef(null); // Ref to get the right container's dimensions
+// --- CUSTOM HOOKS (Logic remains the same, only styling is moved) ---
 
-    const topLines = [
-        "You’re finally awake. Let’s explore my work.",
-        "In a galaxy far, far away, I created this portfolio.",
-        "Winter is coming, but you’re safe here. Explore my work.",
-        "Welcome to my corner of the web!",
-        "Greetings! I'm thrilled to have you here.",
-        "Hi! Thanks for dropping by.",
-        "It’s dangerous to go alone! Take this portfolio.",
-        "Say hello to my little projects!",
-        "Welcome to the dark side of my portfolio.",
-        "One portfolio to rule them all.",
-    ]; // Array of possible headline texts
-
-    const typewriterTexts = [
-        "Software Developer",
-        "Ex-SDE Intern @ Bell",
-        "Co-Chair @ CUSEC",
-        "Ethical Hacker",
-        "AI Enthusiast",
-        "Coffee Drinker",
-        "Hackathon Fanatic"
-    ]; // Array of texts for the typewriter effect
+/**
+ * A hook to manage the typewriter effect.
+ * @param {string[]} texts - An array of strings to type.
+ * @param {object} options - Configuration for speeds and delays.
+ * @returns {string} The current text to display.
+ */
+const useTypewriter = (texts, { typingSpeed, deletingSpeed, pauseDuration }) => {
+    const [text, setText] = useState('');
+    const textIndex = useRef(0);
+    const charIndex = useRef(0);
+    const isDeleting = useRef(false);
 
     useEffect(() => {
-        // Pick a random top line for the header when the component mounts
-        setTopLine(topLines[Math.floor(Math.random() * topLines.length)]);
-    }, []);
+        if (!texts || texts.length === 0) return;
 
-    useEffect(() => {
-        // Typewriter effect
-        const typeWriter = () => {
-            let i = 0;
-            let textPos = 0;
-            let currentString = typewriterTexts[i];
-            const speed = 100; // Typing speed
-            const deleteSpeed = 50; // Deleting speed
-            const waitTime = 2000; // Time before deleting starts
+        let timeoutId;
 
-            // Function to handle typing the text
-            function type() {
-                setCurrentText(currentString.substring(0, textPos) + '_'); // Add typing cursor
+        const handleTyping = () => {
+            const currentString = texts[textIndex.current];
 
-                if (textPos++ === currentString.length) {
-                    setTimeout(() => deleteText(), waitTime); // Wait and start deleting
-                } else {
-                    setTimeout(type, speed); // Continue typing
+            if (isDeleting.current) {
+                // Handle deleting
+                setText(currentString.substring(0, charIndex.current) + '_');
+                charIndex.current -= 1;
+
+                if (charIndex.current < 0) {
+                    isDeleting.current = false;
+                    textIndex.current = (textIndex.current + 1) % texts.length;
+                }
+            } else {
+                // Handle typing
+                setText(currentString.substring(0, charIndex.current + 1) + '_');
+                charIndex.current += 1;
+
+                if (charIndex.current === currentString.length) {
+                    isDeleting.current = true;
+                    // Pause before deleting
+                    timeoutId = setTimeout(handleTyping, pauseDuration);
+                    return;
                 }
             }
 
-            // Function to handle deleting the text
-            function deleteText() {
-                setCurrentText(currentString.substring(0, textPos) + '_'); // Add typing cursor while deleting
-
-                if (textPos-- === 0) {
-                    i = (i + 1) % typewriterTexts.length; // Cycle through text array
-                    currentString = typewriterTexts[i]; // Get next string
-                    setTimeout(type, speed); // Start typing again
-                } else {
-                    setTimeout(deleteText, deleteSpeed); // Continue deleting
-                }
-            }
-
-            type(); // Start the typewriter effect
+            const nextTimeout = isDeleting.current ? deletingSpeed : typingSpeed;
+            timeoutId = setTimeout(handleTyping, nextTimeout);
         };
 
-        typeWriter(); // Invoke the typewriter function on component mount
-    }, []);
+        timeoutId = setTimeout(handleTyping, typingSpeed);
+
+        // Cleanup: This is crucial to prevent memory leaks and errors when the component unmounts.
+        return () => clearTimeout(timeoutId);
+
+    }, [texts, typingSpeed, deletingSpeed, pauseDuration]);
+
+    return text;
+};
+
+/**
+ * A hook to generate and manage animated circles.
+ * @param {React.RefObject<HTMLElement>} containerRef - Ref to the container for dimensions.
+ * @returns {object[]} An array of circle objects to render.
+ */
+const useCircleAnimation = (containerRef) => {
+    const [circles, setCircles] = useState([]);
 
     useEffect(() => {
-        // Create new circles every 333 milliseconds for the spaceship animation
-        const interval = setInterval(() => {
-            if (rightContainerRef.current) {
-                const containerWidth = rightContainerRef.current.clientWidth; // Get container width
-                const containerHeight = rightContainerRef.current.clientHeight; // Get container height
+        const { generationInterval, circlesPerInterval, animationDuration } = CIRCLE_ANIMATION_CONFIG;
 
-                const newCircles = Array.from({ length: 7 }).map(() => {
-                    const isVerticalEdge = Math.random() > 0.5; // Randomly decide if circle spawns at vertical edge
-                    const left = isVerticalEdge
-                        ? (Math.random() > 0.5 ? 0 : containerWidth - 10)  // Either the left or right edge
-                        : Math.random() * containerWidth; // Random horizontal position
+        const intervalId = setInterval(() => {
+            if (!containerRef.current) return;
 
-                    const top = !isVerticalEdge
-                        ? (Math.random() > 0.5 ? 0 : containerHeight - 10)  // Either the top or bottom edge
-                        : Math.random() * containerHeight; // Random vertical position
+            const { clientWidth, clientHeight } = containerRef.current;
+            const centerX = clientWidth / 2;
+            const centerY = clientHeight / 2;
 
-                    return {
-                        id: Date.now() + Math.random(), // Generate unique ID
-                        left,
-                        top,
-                        size: Math.random() * 20 + 10, // Random size for the circle
-                        containerWidth,
-                        containerHeight,
-                    };
-                });
+            const newCircles = Array.from({ length: circlesPerInterval }).map(() => {
+                const isVerticalEdge = Math.random() > 0.5;
+                const size = Math.random() * 20 + 10;
+                const left = isVerticalEdge
+                    ? (Math.random() > 0.5 ? 0 : clientWidth - size)
+                    : Math.random() * clientWidth;
+                const top = !isVerticalEdge
+                    ? (Math.random() > 0.5 ? 0 : clientHeight - size)
+                    : Math.random() * clientHeight;
 
-                setCircles(prevCircles => [...prevCircles, ...newCircles]); // Add new circles to state
+                return {
+                    id: Math.random(),
+                    left,
+                    top,
+                    size,
+                    targetX: centerX - left,
+                    targetY: centerY - top,
+                };
+            });
 
-                // Remove the new circles after 2 seconds
-                setTimeout(() => {
-                    setCircles(prevCircles =>
-                        prevCircles.filter(circle => !newCircles.some(newCircle => newCircle.id === circle.id))
-                    );
-                }, 2000);
+            setCircles(prev => [...prev, ...newCircles]);
+
+            // Cleanup: Remove circles after the animation duration
+            setTimeout(() => {
+                setCircles(prev => prev.slice(newCircles.length));
+            }, animationDuration);
+
+        }, generationInterval);
+
+        // Cleanup: Clear the interval when the component unmounts.
+        return () => clearInterval(intervalId);
+
+    }, [containerRef]);
+
+    return circles;
+};
+
+// --- CSS STYLES AND ANIMATIONS (Moved from styled-components to a standard <style> block) ---
+const CustomStyles = () => (
+    <style>
+        {`
+            /* Apply general font and ensure smooth scrolling */
+            body { font-family: 'RobotoMono', sans-serif; }
+
+            /* Keyframes for the Spaceship Float Animation */
+            @keyframes floatAnimation {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
             }
-        }, 333); // Create circles every 333ms
+            .spaceship-float { animation: floatAnimation 3s ease-in-out infinite; }
 
-        return () => clearInterval(interval); // Clean up interval on component unmount
-    }, []);
+            /* Keyframes for the Circle Shrink and Move Animation */
+            @keyframes shrinkAndMove {
+                from {
+                    transform: translate(0, 0) scale(1);
+                    opacity: 1;
+                }
+                to {
+                    /* Use custom properties set via React style prop */
+                    transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0);
+                    opacity: 0;
+                }
+            }
+            .circle-animate {
+                animation: shrinkAndMove ${CIRCLE_ANIMATION_CONFIG.animationDuration}ms linear forwards;
+            }
+
+            /* Custom Gradient Text Styling */
+            .gradient-text {
+                background: linear-gradient(80deg, #1c7287, #27beb3);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        `}
+    </style>
+);
+
+
+// --- MAIN COMPONENT ---
+const Hero = () => {
+    const rightContainerRef = useRef(null);
+
+    // Using useMemo for static arrays.
+    const memoizedTopLines = useMemo(() => TOP_LINES, []);
+    const memoizedTypewriterTexts = useMemo(() => TYPEWRITER_TEXTS, []);
+
+    // State derived from custom hooks.
+    const [topLine] = useState(() => memoizedTopLines[Math.floor(Math.random() * memoizedTopLines.length)]);
+    const currentText = useTypewriter(memoizedTypewriterTexts, TYPEWRITER_OPTIONS);
+    const circles = useCircleAnimation(rightContainerRef);
 
     return (
-        <HeroContainer>
-            <LeftContainer>
-                <h1>{topLine}</h1> {/* Display random headline */}
-                <GradientText>I'm TJ Klint.</GradientText> {/* Display name with gradient effect */}
-                <TypewriterText>{currentText}</TypewriterText> {/* Display typewriter effect text */}
-            </LeftContainer>
-            <RightContainer ref={rightContainerRef}>
-                <Spaceship src={spaceship} alt="Spaceship" /> {/* Display the floating spaceship */}
-                {circles.map(circle => (
-                    <Circle
-                        key={circle.id} /* Key for each circle */
-                        left={circle.left} /* Horizontal position */
-                        top={circle.top} /* Vertical position */
-                        size={circle.size} /* Circle size */
-                        containerWidth={circle.containerWidth} /* Width of the container */
-                        containerHeight={circle.containerHeight} /* Height of the container */
+        <>
+            <CustomStyles />
+            {/* HeroContainer equivalent with Tailwind */}
+            <section className="flex flex-col min-h-screen bg-[#1e1e1e] text-white overflow-hidden font-sans md:flex-row">
+
+                {/* LeftContainer equivalent with Tailwind */}
+                <div className="flex flex-col justify-center p-10 text-left w-full md:w-[35%] transition-transform -translate-y-[10%] md:translate-y-0 text-center md:text-left">
+                    <h1 className="text-xl md:text-2xl">{topLine}</h1>
+
+                    {/* GradientText equivalent with Tailwind and custom class */}
+                    <h2 className="gradient-text font-bold my-2" style={{fontSize: "clamp(2.5em, 8vw, 4em)"}}>I'm TJ Klint.</h2>
+
+                    {/* TypewriterText equivalent with Tailwind */}
+                    <div className="text-[#27beb3] whitespace-nowrap overflow-hidden" style={{fontSize: "clamp(1.2em, 4vw, 1.5em)", minHeight: "1.2em"}}>
+                        {currentText || '_'}
+                    </div>
+                </div>
+
+                {/* RightContainer equivalent with Tailwind */}
+                <div
+                    ref={rightContainerRef}
+                    className="relative flex justify-center items-center overflow-hidden min-h-[50vh] w-full md:w-[65%]"
+                >
+                    {/* Spaceship equivalent with Tailwind and custom animation class */}
+                    <img
+                        src={spaceship}
+                        alt="Floating cartoon spaceship"
+                        className="w-[80%] max-w-[400px] z-10 spaceship-float md:w-1/2 md:max-w-[500px]"
                     />
-                ))}
-            </RightContainer>
-        </HeroContainer>
+
+                    {/* Dynamic Circles */}
+                    {circles.map(circle => (
+                        <div
+                            key={circle.id}
+                            className="absolute bg-white rounded-full circle-animate"
+                            style={{
+                                width: `${circle.size}px`,
+                                height: `${circle.size}px`,
+                                left: `${circle.left}px`,
+                                top: `${circle.top}px`,
+                                // Set CSS variables for the shrinkAndMove keyframes
+                                '--tx': `${circle.targetX}px`,
+                                '--ty': `${circle.targetY}px`,
+                            }}
+                        />
+                    ))}
+                </div>
+            </section>
+        </>
     );
 };
 
