@@ -81,7 +81,7 @@ const Experience = () => {
                                     <div className="flex items-start">
                                         <div className="absolute top-0  md:left-10 left-5 h-9/10 flex justify-center">
                                             <div className="timeline absolute z-30 h-[120%] -top-10 w-14 md:w-28 bg-black" />
-                                            <div className={`${styles['gradient-line']} w-1 h-full`} />
+                                            <div className={`${styles['gradient-line']} bg-primary w-1 h-full`} />
                                         </div>
                                         <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
                                             <div className="md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-black-50 bg-black-100">
