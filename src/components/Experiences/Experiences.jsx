@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TitleHeader from "../../shared-UI/TitleHeader.jsx";
 import {expCards} from "../../constants/index.js";
 import styles from './Experiences.module.scss'
+import Resume from "./Resume.jsx";
 gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
@@ -71,12 +72,12 @@ const Experience = () => {
                     title="Professional Work Experience"
                     sub="💼 My Career Overview"
                 />
-                <div className="mt-32 relative">
+                <div className="mt-32 relative flex">
                     <div className="relative z-50 xl:space-y-32 space-y-10">
                         {expCards.map((card) => (
-                            <div key={card.title} className=" flex flex-col-reverse xl:flex-row xl:gap-20 gap-10 justify-between">
+                            <div key={card.title} className=" flex flex-col-reverse xl:flex-row xl:gap-10 gap-2 justify-between">
 
-                                <div className="xl:w-4/6">
+                                <div className=''>
                                     <div className="flex items-start">
                                         <div className="absolute top-0  md:left-10 left-5 h-9/10 flex justify-center">
                                             <div className="timeline absolute z-30 h-[120%] -top-10 w-14 md:w-28 bg-black" />
@@ -107,12 +108,13 @@ const Experience = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="xl:w-2/6">
 
-                                </div>
                             </div>
                         ))}
                     </div>
+                        <div className="w-[700px]">
+                           <Resume />
+                        </div>
                 </div>
             </div>
         </section>

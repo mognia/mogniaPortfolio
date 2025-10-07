@@ -236,7 +236,7 @@ const Hero = () => {
                 >
                     {/* Spaceship equivalent with Tailwind and custom animation class */}
                     <img
-                        src={spaceship}
+                        src={spaceship ? spaceship :null}
                         alt="Floating cartoon spaceship"
                         className="w-[80%] max-w-[400px] z-10 spaceship-float md:w-1/2 md:max-w-[500px]"
                     />
