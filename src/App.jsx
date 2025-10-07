@@ -7,6 +7,7 @@ import About from "./components/About/About.jsx";
 import './App.css'
 import Experiences from "./components/Experiences/Experiences.jsx";
 import Projects from "./components/Projects/Projects.jsx";
+import SocialLinks from "./components/SocialLinks/SocialLinks.jsx";
 const AppContainer = styled.div`
   background-color: #1e1e1e; /* Match the background color of the hero section */
   min-height: 100vh;
@@ -26,6 +27,7 @@ function App() {
               <About />
               <Experiences />
             <Projects />
+            <SocialLinks />
             </MainContent>
           </AppContainer>
         </Router>
