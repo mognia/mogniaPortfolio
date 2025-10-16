@@ -218,7 +218,7 @@ const Hero = () => {
                     <h2 className="gradient-text font-bold my-2" style={{fontSize: "clamp(2.5em, 8vw, 4em)"}}>I'm Mognia.</h2>
 
                     {/* TypewriterText equivalent with Tailwind */}
-                    <div className="text-[#27beb3] whitespace-nowrap overflow-hidden" style={{fontSize: "clamp(1.2em, 4vw, 1.5em)", minHeight: "1.2em"}}>
+                    <div className="text-[#bcd6d4] whitespace-nowrap overflow-hidden" style={{fontSize: "clamp(1.2em, 4vw, 1.5em)", minHeight: "1.2em"}}>
                         {currentText || '_'}
                     </div>
                 </div>

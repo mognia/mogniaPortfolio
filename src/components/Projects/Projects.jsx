@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import styles from './Projects.module.scss'
 import TitleHeader from "../../shared-UI/TitleHeader.jsx";
+import {FaGithub} from "react-icons/fa";
+import React from "react";
+
 const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -17,96 +20,135 @@ const staggerContainer = {
 
  const Projects = () => {
      return (
-         <div id={'projects'} className="w-full mt-20 h-full md:px-20 px-5">
-         <TitleHeader
-             title="Professional Work Experience"
-             sub="🚀 My Projects"
-         />
-         <motion.section
-             id="projects"
-             className={styles['projects']}
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             viewport={{ once: false }}
-             transition={{ duration: 1 }}
-         >
+         <div id="projects" className="w-full mt-20 h-full md:px-20 px-5">
+             <TitleHeader title="Personal Projects" sub="🚀 My Projects" />
 
-             <motion.div
-                 className={styles['project-grid']}
-                 variants={staggerContainer}
-                 initial="initial"
-                 whileInView="animate"
+             <motion.section
+                 className={styles.projects}
+                 initial={{ opacity: 0 }}
+                 whileInView={{ opacity: 1 }}
                  viewport={{ once: false }}
+                 transition={{ duration: 1 }}
              >
                  <motion.div
-                     className={styles['project-card']}
-                     variants={fadeInUp}
-                     whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                     className={styles["project-grid"]}
+                     variants={staggerContainer}
+                     initial="initial"
+                     whileInView="animate"
+                     viewport={{ once: false }}
                  >
+                     {/* === Project Card === */}
                      <motion.div
-                         className={styles['project-image']}
-                         style={{ backgroundImage: "url('/projects/ai-saas.png')" }}
-                         whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                     />
-                     <h3>AI SaaS Platform</h3>
-                     <p>
-                         A modern SaaS platform built with Next.js and OpenAI integration,
-                         featuring real-time AI-powered content generation and analytics.
-                     </p>
-                     <div className={styles['project-tech']}>
-                         <span>Next.js</span>
-                         <span>OpenAI</span>
-                         <span>TailwindCSS</span>
-                     </div>
-                 </motion.div>
+                         className={styles["project-card"]}
+                         variants={fadeInUp}
+                         whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                     >
+                         <motion.div
+                             className={styles["project-image"]}
+                             style={{
+                                 backgroundImage: "url('/projects/mogniaPortfolio.webp')",
+                             }}
+                             whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                         />
 
-                 <motion.div
-                     className={styles['project-card']}
-                     variants={fadeInUp}
-                     whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                 >
-                     <motion.div
-                         className={styles['project-image']}
-                         style={{ backgroundImage: "url('/projects/social-media.png')" }}
-                         whileHover={{ scale: 1.05 }}
-                         transition={{ duration: 0.2 }}
-                     />
-                     <h3>Social Media Dashboard</h3>
-                     <p>
-                         A comprehensive social media management dashboard with analytics,
-                         scheduling, and engagement tracking features.
-                     </p>
-                     <div className={styles['project-tech']}>
-                         <span>React</span>
-                         <span>Node.js</span>
-                         <span>MongoDB</span>
-                     </div>
-                 </motion.div>
+                         <h3>Mognia Portfolio</h3>
+                         <p>
+                             A modern and animated portfolio built with React.js and Vite,
+                             using styled components.
+                         </p>
 
-                 <motion.div
-                     className={styles['project-card']}
-                     variants={fadeInUp}
-                     whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                 >
-                     <motion.div
-                         className={styles['project-image']}
-                         style={{ backgroundImage: "url('/projects/stopwatch.png')" }}
-                         whileHover={{ scale: 1.05 }}
-                         transition={{ duration: 0.2 }}
-                     />
-                     <h3>Productivity Timer</h3>
-                     <p>
-                         A sleek productivity timer application with customizable work sessions,
-                         statistics tracking, and dark mode support.
-                     </p>
-                     <div className={styles['project-tech']}>
-                         <span>React</span>
-                         <span>TypeScript</span>
-                         <span>TailwindCSS</span>
-                     </div>
+                         <div className={styles["project-tech"]}>
+                             <span>React.js</span>
+                             <span>TailwindCSS</span>
+                         </div>
+
+                         {/* ✅ Make links clickable */}
+                         <div className={styles["project-links"]}>
+                             <motion.a
+                                 href="https://github.com/yourusername/mognia-portfolio"
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 whileHover={{ scale: 1.2 }}
+                                 whileTap={{ scale: 0.95 }}
+                                 className={styles.link}
+                             >
+                                 <FaGithub />
+                             </motion.a>
+
+                             <motion.a
+                                 href="https://mognia.dev"
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 whileHover={{ scale: 1.1 }}
+                                 whileTap={{ scale: 0.95 }}
+                                 className={styles.link}
+                             >
+                                 Live
+                             </motion.a>
+                         </div>
+                     </motion.div>
+                     {/* === End Project Card === */}
                  </motion.div>
-             </motion.div>
-         </motion.section>
+                 <motion.div
+                     className={styles["project-grid"]}
+                     variants={staggerContainer}
+                     initial="initial"
+                     whileInView="animate"
+                     viewport={{ once: false }}
+                 >
+                     {/* === Project Card === */}
+                     <motion.div
+                         className={styles["project-card"]}
+                         variants={fadeInUp}
+                         whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                     >
+                         <motion.div
+                             className={styles["project-image"]}
+                             style={{
+                                 backgroundImage: "url('/projects/stocks.webp')",
+                             }}
+                             whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                         />
+
+                         <h3>Signalio</h3>
+                         <p>
+                             Stock Market app built with Next.js, Shadcn, Better Auth. Track prices, set alerts, explore insights, manage watchlists, and automate workflows for notifications and analytics.
+                         </p>
+
+                         <div className={styles["project-tech"]}>
+                             <span>Next.js</span>
+                             <span>Shadcn</span>
+                             <span>Better Auth</span>
+                         </div>
+
+                         {/* ✅ Make links clickable */}
+                         <div className={styles["project-links"]}>
+                             <motion.a
+                                 href="https://github.com/mognia/stock-app"
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 whileHover={{ scale: 1.2 }}
+                                 whileTap={{ scale: 0.95 }}
+                                 className={styles.link}
+                             >
+                                 <FaGithub />
+                             </motion.a>
+
+                             <motion.a
+                                 href="https://stock-app-murex.vercel.app/"
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 whileHover={{ scale: 1.1 }}
+                                 whileTap={{ scale: 0.95 }}
+                                 className={styles.link}
+                             >
+                                 Live
+                             </motion.a>
+                         </div>
+                     </motion.div>
+                     {/* === End Project Card === */}
+                 </motion.div>
+             </motion.section>
          </div>
     );
 };
