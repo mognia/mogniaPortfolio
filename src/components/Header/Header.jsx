@@ -35,7 +35,14 @@ const Header = () => {
                     <FaCode />
                     Projects
                 </a>
-                <a href="#resume"  className={styles['nav-link']} onClick={(e) => handleClick(e, 'resume')}>
+                <a href="#resume"  className={styles['nav-link']}   onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/cv.pdf';
+                    link.download = 'Morten_Ghafarnia_CV.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }}>
                     <FaFileAlt />
                     Resume
                 </a>
