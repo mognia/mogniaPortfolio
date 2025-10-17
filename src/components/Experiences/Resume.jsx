@@ -10,6 +10,14 @@ export default function Resume() {
 
             {/* Always-Visible Download Button */}
             <button
+                onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/cv.pdf';
+                    link.download = 'Morten_Ghafarnia_CV.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }}
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-secondary text-white rounded hover:bg-primary transition"
             >
