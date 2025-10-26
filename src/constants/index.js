@@ -1,6 +1,6 @@
 const expCards = [
     {
-        logoPath: "./src/assets/logos/asa.webp",
+        logoPath: "/logos/asa.webp",
         title: "Senior Frontend Developer",
         date: "April 2023 - Oct 2025",
         responsibilities: [
@@ -11,7 +11,7 @@ const expCards = [
         ],
     },
     {
-        logoPath: "./src/assets/logos/kilid.webp",
+        logoPath: "/logos/kilid.webp",
         title: "Senior Frontend Developer",
         date: "June 2021 - December 2022",
         responsibilities: [
@@ -21,7 +21,7 @@ const expCards = [
         ],
     },
     {
-        logoPath: "./src/assets/logos/esafar.webp",
+        logoPath: "/logos/esafar.webp",
         title: "Frontend Developer",
         date: "Aug 2019 - Sept 2020",
         responsibilities: [

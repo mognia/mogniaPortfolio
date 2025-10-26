@@ -148,6 +148,67 @@ const staggerContainer = {
                      </motion.div>
                      {/* === End Project Card === */}
                  </motion.div>
+                 <motion.div
+                     className={styles["project-grid"]}
+                     variants={staggerContainer}
+                     initial="initial"
+                     whileInView="animate"
+                     viewport={{ once: false }}
+                 >
+                     {/* === Project Card === */}
+                     <motion.div
+                         className={styles["project-card"]}
+                         variants={fadeInUp}
+                         whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                     >
+                         <motion.div
+                             className={styles["project-image"]}
+                             style={{
+                                 backgroundImage: "url('/projects/mrello.webp')",
+                             }}
+                             whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                         />
+
+                         <h3>Mrello</h3>
+                         <p>
+                             Mrello is a full-stack task management tool inspired by Trello.
+                             It’s built using Next.js, Supabase, and Clerk, offering a complete real-time drag-and-drop workflow for managing boards, columns, and tasks.                         </p>
+
+                         <div className={styles["project-tech"]}>
+                             <span>Next.js</span>
+                             <span>Supabase</span>
+                             <span>Clerk</span>
+                             <span>@dnd-kit</span>
+                             <span>TailwindCSS</span>
+                         </div>
+
+                         {/* ✅ Make links clickable */}
+                         <div className={styles["project-links"]}>
+                             <motion.a
+                                 href="https://github.com/mognia/mrello"
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 whileHover={{ scale: 1.2 }}
+                                 whileTap={{ scale: 0.95 }}
+                                 className={styles.link}
+                             >
+                                 <FaGithub />
+                             </motion.a>
+
+                             <motion.a
+                                 href="https://mrello-i8u5.vercel.app/"
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 whileHover={{ scale: 1.1 }}
+                                 whileTap={{ scale: 0.95 }}
+                                 className={styles.link}
+                             >
+                                 Live
+                             </motion.a>
+                         </div>
+                     </motion.div>
+                     {/* === End Project Card === */}
+                 </motion.div>
              </motion.section>
          </div>
     );

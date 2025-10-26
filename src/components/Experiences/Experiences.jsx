@@ -74,8 +74,8 @@ const Experience = () => {
                 />
                 <div className="mt-32 relative flex">
                     <div className="relative z-50 xl:space-y-32 space-y-10">
-                        {expCards.map((card) => (
-                            <div key={card.title} className=" flex flex-col-reverse xl:flex-row xl:gap-10 gap-2 justify-between">
+                        {expCards.map((card,index) => (
+                            <div key={index} className=" flex flex-col-reverse xl:flex-row xl:gap-10 gap-2 justify-between">
 
                                 <div className=''>
                                     <div className="flex items-start">
