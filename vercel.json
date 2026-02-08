@@ -1,9 +1,9 @@
 {
   "rewrites": [
-    { "source": "/offerlog", "destination": "https://offerlog.vercel.app" },
-    { "source": "/offerlog/(.*)", "destination": "https://offerlog.vercel.app/$1" },
+    { "source": "/offerlog", "destination": "https://offerlog-m0l4x9xe0-mognias-projects.vercel.app/offerlog" },
+    { "source": "/offerlog/(.*)", "destination": "https://offerlog-m0l4x9xe0-mognias-projects.vercel.app/offerlog/$1" },
 
-    { "source": "/jdroaster", "destination": "https://jdroaster.vercel.app/" },
-    { "source": "/jdroaster/(.*)", "destination": "https://jdroaster.vercel.app/$1" }
+    { "source": "/jdroaster", "destination": "https://vercel.com/mognias-projects/jdroaster/65b3aA5HLbidhrY2PAMXSEgDZWrH/" },
+    { "source": "/jdroaster/(.*)", "destination": "https://vercel.com/mognias-projects/jdroaster/65b3aA5HLbidhrY2PAMXSEgDZWrH/$1" }
   ]
 }
