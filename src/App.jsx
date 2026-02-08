@@ -1,14 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import {HashRouter as Router} from 'react-router-dom';
-import Hero from "./components/Hero/Hero.jsx";
+import {HashRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header/Header.jsx";
-import About from "./components/About/About.jsx";
 import './App.css'
-import Experiences from "./components/Experiences/Experiences.jsx";
-import Projects from "./components/Projects/Projects.jsx";
-import SocialLinks from "./components/SocialLinks/SocialLinks.jsx";
-import Footer from "./components/Footer/Footer.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import ProjectsPage from "./pages/ProjectsPage.jsx";
 
 const AppContainer = styled.div`
     background-color: #1e1e1e; /* Match the background color of the hero section */
@@ -26,12 +22,11 @@ function App() {
             <AppContainer>
                 <Header/>
                 <MainContent>
-                    <Hero/>
-                    <About/>
-                    <Experiences/>
-                    <Projects/>
-                    <SocialLinks/>
-                    <Footer/>
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/projects" element={<ProjectsPage />} />
+                        <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
                 </MainContent>
             </AppContainer>
         </Router>

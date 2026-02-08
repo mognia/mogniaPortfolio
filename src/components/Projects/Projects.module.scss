@@ -1,195 +1,207 @@
-// styles/projects.scss
+// Variables (Adjust to match your specific Design Language)
+$bg-card: #0a0a0a;
+$border-color: rgba(255, 255, 255, 0.1);
+$text-primary: #ffffff;
+$text-secondary: #a1a1aa;
+$accent-color: #3b82f6; // A professional tech blue
+$radius: 12px;
 
-#projects,
 .projects {
-  display: flex;
-  gap: 2rem;
-  padding: 6rem 5%;
-  background-color: var(--background);
-  position: relative;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-}
-
-.projects h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
+  width: 100%;
+  padding-bottom: 4rem;
 }
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  // Responsive grid: Stacks on mobile, 2 columns on tablet, 3 on wide screens
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin-top: 3rem;
 }
 
-.project-card {
-  background-color: #2e2e2e;
-  border-radius: 1rem;
+.projectCard {
+  background: $bg-card;
+  border: 1px solid $border-color;
+  border-radius: $radius;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: all 0.3 ease;
-  border: 1px solid #27beb3;
-  position: relative;
   display: flex;
   flex-direction: column;
-  width: 30rem;
-  @media (max-width: 768px) {
-    width: 20rem;
-  }
-  //cursor: pointer;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-                    135deg,
-                    var(--gradient-start) 0%,
-                    var(--gradient-end) 100%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
-  }
-
-  &:hover::before {
-    opacity: 0.1;
-  }
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-color);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    
+    // Highlight the image overlay on card hover
+    .imageContainer .overlay {
+        opacity: 0;
+    }
   }
+}
+
+.imageContainer {
+  width: 100%;
+  aspect-ratio: 16 / 9; // Standard screen ratio
+  overflow: hidden;
+  position: relative;
+  background: #111;
+  border-bottom: 1px solid $border-color;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  // A subtle dark tint that fades out on hover to make text pop initially
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.1);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #1a1a1a, #222);
+  }
+}
+
+.content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
 
   h3 {
-    padding: 1.5rem 1.5rem 0.5rem;
-    font-size: 1.5rem;
-    color: #27beb3;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0;
+    line-height: 1.2;
   }
 
-  p {
-    padding: 0 1.5rem 1rem;
-    color: var(--light-text);
-    flex-grow: 1;
-  }
-
-  .project-image {
-    height: 240px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid #27beb3;
-    pointer-events: none; // ✅ prevent blocking clicks
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(
-                      45deg,
-                      transparent 0%,
-                      rgba(255, 255, 255, 0.1) 50%,
-                      transparent 100%
-      );
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-      pointer-events: none; // ✅ also disable on overlay
-    }
-  }
-
-  &:hover .project-image::after {
-    transform: translateX(100%);
-  }
-}
-
-.project-tech {
-  padding: 0 1.5rem 1.5rem;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-
-  span {
-    padding: 0.3rem 0.8rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    font-size: 0.8rem;
-    color: var(--accent-color);
-    border: 1px solid rgba(244, 114, 182, 0.2);
-  }
-}
-.project-links {
-  padding: 0 1.5rem 1.5rem;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 5; // ✅ make sure it's above overlays
-  pointer-events: auto; // ✅ ensure it's clickable
-
-  a {
+  .links {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.3rem 0.8rem;
-    background: #1c7287;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    color: #27beb3;
-    border: 1px solid #27beb3;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s ease;
+    gap: 0.75rem;
 
-    &:hover {
-      background: #27beb3;
-      color: #fff;
-    }
+    a {
+      color: $text-secondary;
+      font-size: 1.1rem;
+      transition: color 0.2s ease, transform 0.2s ease;
 
-    svg {
-      margin-right: 0.3rem;
-      font-size: 1rem;
+      &:hover {
+        color: $text-primary;
+        transform: translateY(-2px);
+      }
     }
   }
 }
 
-.button {
+.description {
+  font-size: 0.95rem;
+  color: $text-secondary;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; // Pushes tags to the bottom
+}
+
+.techStack {
   display: flex;
-  align-items: center; /* Vertically align button content */
-  margin-left: 40px; /* Space between the button and nav links */
-  padding: 8px 16px; /* Padding inside the button */
-  border: 2px solid #27beb3; /* Purple border around the button */
-  background: transparent;
-  color: #27beb3; /* Purple text */
-  text-decoration: none; /* Remove underline from the button text */
-  font-size: 18px; /* Set the button text size */
-  transition: all 0.3s; /* Smooth transition for background and text color */
-  font-family: 'RobotoMono', sans-serif;
-  border-radius: 5px; /* Rounded button corners */
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $text-secondary;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+// Global page intro adjustment
+.projects-page-intro {
+    margin-bottom: 2rem;
+    color: $text-secondary;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+.content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+}
+
+.projectActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr; // Side by side buttons
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+
+  // If only one button exists, make it full width
+  &:has(> :last-child:nth-child(1)) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btnPrimary, .btnSecondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary {
+  background: #fff; // Solid white for the "Primary" action
+  color: #000;
+  border: 1px solid #fff;
 
   &:hover {
-    background-color: #27beb3; /* Purple background on hover */
-    color: #fff; /* White text on hover */
+    background: #e4e4e7; // Zinc-200
+    transform: translateY(-2px);
   }
+}
 
-  svg {
-    margin-right: 8px; /* Space between the icon and text */
-  }
+.btnSecondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
-  /* Mobile: Adjust button spacing and size */
-  @media (max-width: 768px) {
-    margin-left: 0;
-    margin-bottom: 20px; /* Add space between the button and other elements */
-    font-size: 24px; /* Increase button font size on mobile */
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
   }
+}
+
+// Adjust techStack margin since buttons are now below it
+.techStack {
+  margin-bottom: 0.5rem; 
 }

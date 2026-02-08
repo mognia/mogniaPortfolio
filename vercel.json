@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/offerlog", "destination": "https://offerlog-yourname.vercel.app" },
+    { "source": "/offerlog/(.*)", "destination": "https://offerlog-yourname.vercel.app/$1" },
+
+    { "source": "/jdroaster", "destination": "https://offerlog.vercel.app/" },
+    { "source": "/jdroaster/(.*)", "destination": "https://offerlog.vercel.app/$1" }
+  ]
+}

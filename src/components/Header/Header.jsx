@@ -1,40 +1,55 @@
 import React, { useState } from 'react';
-import { FaHome, FaUser, FaCode, FaFileAlt, FaBars, FaTimes, FaGithub, FaStar, FaCodeBranch } from 'react-icons/fa';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaHome, FaUser, FaCode, FaFileAlt, FaBars, FaTimes, FaGithub } from 'react-icons/fa';
 import styles from './Header.module.scss';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const handleClick = (e , target) => {
+    const handleScrollNavigation = (e , target) => {
         e.preventDefault();
+
+        if (location.pathname !== "/") {
+            navigate("/", { state: { scrollTarget: target } });
+            setIsOpen(false);
+            return;
+        }
+
         const section = document.getElementById(target);
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
         }
+
         setIsOpen(false);
     };
 
     return (
         <header className={styles['header-container']}>
-            <a href="#home" className={styles.logo} onClick={(e) => handleClick(e, 'home')}>
+            <Link to="/" className={styles.logo} onClick={(e) => handleScrollNavigation(e, 'home')}>
                 Mognia
-            </a>
+            </Link>
             <div className={styles.hamburger} onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? <FaTimes size={30} className={styles['close-icon']} /> : <FaBars size={30} />}
             </div>
             <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
-                <a href="#home" className={styles['nav-link']} onClick={(e) => handleClick(e, 'home')}>
+                <Link to="/" className={styles['nav-link']} onClick={(e) => handleScrollNavigation(e, 'home')}>
                     <FaHome />
                     Home
-                </a>
-                <a href="#about"  className={styles['nav-link']} onClick={(e) => handleClick(e, 'about')}>
+                </Link>
+                <Link to="/" className={styles['nav-link']} onClick={(e) => handleScrollNavigation(e, 'about')}>
                     <FaUser />
                     About
-                </a>
-                <a href="#projects"  className={styles['nav-link']} onClick={(e) => handleClick(e, 'projects')}>
+                </Link>
+                <Link
+                    to="/projects"
+                    className={styles['nav-link']}
+                    onClick={() => setIsOpen(false)}
+                >
                     <FaCode />
                     Projects
-                </a>
+                </Link>
                 <a href="#resume"  className={styles['nav-link']}   onClick={() => {
                     const link = document.createElement('a');
                     link.href = '/cv.pdf';
