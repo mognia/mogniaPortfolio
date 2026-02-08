@@ -3,7 +3,7 @@
     { "source": "/offerlog", "destination": "https://offerlog-m0l4x9xe0-mognias-projects.vercel.app/offerlog" },
     { "source": "/offerlog/(.*)", "destination": "https://offerlog-m0l4x9xe0-mognias-projects.vercel.app/offerlog/$1" },
 
-    { "source": "/jdroaster", "destination": "https://jdroaster-hgw9gawex-mognias-projects.vercel.app/" },
-    { "source": "/jdroaster/(.*)", "destination": "https://jdroaster-hgw9gawex-mognias-projects.vercel.app/$1" }
+    { "source": "/jdroaster", "destination": "https://jdroaster-hgw9gawex-mognias-projects.vercel.app/jdroaster" },
+    { "source": "/jdroaster/(.*)", "destination": "https://jdroaster-hgw9gawex-mognias-projects.vercel.app/jdroaster/$1" }
   ]
 }
