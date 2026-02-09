@@ -12,7 +12,7 @@ const projects = [
         ],
         img:'/projects/offerLog.webp',
         githubUrl :'https://github.com/mognia/offerlog',
-        liveDemoUrl: "https://mognia.dev/offerlog"
+        liveDemoUrl: "https://offerlog.mognia.dev"
     },
     {
         title: "JD Roaster",
@@ -27,7 +27,7 @@ const projects = [
         ],
         img:'/projects/jdRoaster.webp',
         githubUrl :'https://github.com/mognia/jdroaster',
-        liveDemoUrl: "https://mognia.dev/jdroaster"
+        liveDemoUrl: "https://jdroaster.mognia.dev"
     },
     {
         title: "Mrello",
