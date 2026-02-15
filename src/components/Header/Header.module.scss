@@ -71,6 +71,10 @@
   }
 }
 
+.nav-link-active {
+  color: #27beb3;
+}
+
 .hamburger {
   display: none; /* Hide the hamburger menu by default */
   cursor: pointer; /* Pointer cursor to indicate it's clickable */

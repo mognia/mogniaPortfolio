@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaHome, FaUser, FaCode, FaFileAlt, FaBars, FaTimes, FaGithub } from 'react-icons/fa';
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { FaHome, FaUser, FaCode, FaFileAlt, FaBars, FaTimes, FaGithub, FaRocket } from 'react-icons/fa';
 import styles from './Header.module.scss';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+    const getNavLinkClass = ({ isActive }) =>
+        `${styles['nav-link']} ${isActive ? styles['nav-link-active'] : ''}`;
 
     const handleScrollNavigation = (e , target) => {
         e.preventDefault();
@@ -34,22 +36,30 @@ const Header = () => {
                 {isOpen ? <FaTimes size={30} className={styles['close-icon']} /> : <FaBars size={30} />}
             </div>
             <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
-                <Link to="/" className={styles['nav-link']} onClick={(e) => handleScrollNavigation(e, 'home')}>
+                <NavLink to="/" end className={getNavLinkClass} onClick={(e) => handleScrollNavigation(e, 'home')}>
                     <FaHome />
                     Home
-                </Link>
+                </NavLink>
                 <Link to="/" className={styles['nav-link']} onClick={(e) => handleScrollNavigation(e, 'about')}>
                     <FaUser />
                     About
                 </Link>
-                <Link
+                <NavLink
                     to="/projects"
-                    className={styles['nav-link']}
+                    className={getNavLinkClass}
                     onClick={() => setIsOpen(false)}
                 >
                     <FaCode />
                     Projects
-                </Link>
+                </NavLink>
+                <NavLink
+                    to="/offer"
+                    className={getNavLinkClass}
+                    onClick={() => setIsOpen(false)}
+                >
+                    <FaRocket />
+                    Offer
+                </NavLink>
                 <a href="#resume"  className={styles['nav-link']}   onClick={() => {
                     const link = document.createElement('a');
                     link.href = '/cv.pdf';
